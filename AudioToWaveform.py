@@ -96,13 +96,11 @@ def plotSpectrogram(audio_file, y, x_axis="time", y_axis="linear", cmap="gray_r"
     # Plot Spectrogram
     X = librosa.stft(y)
     Xdb = librosa.amplitude_to_db(abs(X))
-    plt.figure(figsize=(14, 5))
+    plt.figure(figsize=(14, 5), frameon=False)
     librosa.display.specshow(Xdb, sr=sr, x_axis=x_axis, y_axis=y_axis, cmap=cmap)
     plt.axis('off')
-    plt.margins(0)
-    plt.axes([0., 0., 1., 1.], frameon=False, xticks=[], yticks=[])  # Remove the white edge
 
-    plt.savefig("test.png", bbox_inches='tight')
+    plt.savefig("test.png", bbox_inches='tight', pad_inches=0)
 
 # MAIN METHOD
 if __name__ == '__main__':
