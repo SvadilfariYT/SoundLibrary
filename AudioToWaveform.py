@@ -17,7 +17,7 @@ color_cycle = cycle(plt.rcParams["axes.prop_cycle"].by_key()["color"])
 
 audio_files = []
 
-def loadAudioFiles(path, accepted_filetypes):
+def loadAudioFiles(accepted_filetypes, path=""):
     """
     This function loads all Audio files in a given folder into an array.
 
@@ -96,7 +96,7 @@ def plotSpectrogram(audio_file, y, x_axis="time", y_axis="linear", cmap="gray_r"
     # Plot Spectrogram
     X = librosa.stft(y)
     Xdb = librosa.amplitude_to_db(abs(X))
-    plt.figure(figsize=(14, 5), frameon=False)
+    plt.figure(figsize=(10, 5), frameon=False)
     librosa.display.specshow(Xdb, sr=sr, x_axis=x_axis, y_axis=y_axis, cmap=cmap)
     plt.axis('off')
 
@@ -106,7 +106,7 @@ def plotSpectrogram(audio_file, y, x_axis="time", y_axis="linear", cmap="gray_r"
 if __name__ == '__main__':
     # Load Audio Files
     accepted_filetypes = ['WAV','MP3']
-    loadAudioFiles('', accepted_filetypes)
+    loadAudioFiles(accepted_filetypes)
 
     for audio in audio_files:
         plotSpectrogram(audio, trimAudioFile(audio, 40))
